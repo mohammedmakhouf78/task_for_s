@@ -29,4 +29,5 @@ Route::group(['prefix' => 'task1'],function(){
 Route::group(['prefix' => 'task2'],function(){
     Route::get('products-page',[ProductController::class,'productsPage'])->name('productsPage');
     Route::get('get-products',[ProductController::class,'getProducts'])->name('getProducts');
+    Route::get('get-products-statistics',[ProductController::class,'getProductsStatistics'])->name('getProductsStatistics');
 });

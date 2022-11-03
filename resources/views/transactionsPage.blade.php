@@ -25,24 +25,5 @@
 @push('js')
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 
-<script>
-    $(document).ready( function () {
-        $('#table_id').DataTable({
-            // "processing": true,
-            serverSide: true,
-            ajax: {
-                url: '/task1/get-transactions',
-                dataSrc: 'data'
-            },
-            columns: [
-                {data: "id"},
-                {data: "payment_id"},
-                {data: "amount"},
-                {data: "currency"},
-                {data: "status"},
-                {data: "created_at"},
-            ]
-        });
-    } );
-</script>
+<script src="{{asset('js/transactions.js')}}"></script>
 @endpush

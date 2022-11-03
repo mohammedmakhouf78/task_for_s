@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('product');
             $table->string('category');
             $table->string('brand');
-            $table->unsignedBigInteger('searched');
+            $table->unsignedBigInteger('searched')->default(0);
             $table->timestamps();
         });
     }

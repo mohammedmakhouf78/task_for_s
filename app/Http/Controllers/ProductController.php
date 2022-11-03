@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -38,10 +38,30 @@ class ProductController extends Controller
             });
         });
 
+        $productsQuery->update([
+            'searched' => DB::raw('searched + 1')
+        ]);
+
         $products = $productsQuery->get();
 
         return response()->json([
             'products' => $products
+        ]);
+    }
+
+    public function getProductsStatistics()
+    {
+        $products = Product::select(['product','searched'])
+        ->orderBy('searched','DESC')
+        ->limit(6)
+        ->get();
+
+        $productNames = $products->pluck('product');
+        $productSearchedCount = $products->pluck('searched');
+
+        return response()->json([
+            'productNames' => $productNames,
+            'productSearchedCount' => $productSearchedCount,
         ]);
     }
 }
